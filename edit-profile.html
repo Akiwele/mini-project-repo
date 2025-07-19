@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Edit Profile | TalentLoop</title>
+  <link rel="stylesheet" href="edit-profile.css" />
+</head>
+<body>
+  <div class="edit-profile-page">
+    <button class="back-button" id="goBackBtn">
+      <img src="Thumbnails/left.png" alt="Back">
+    </button>
+
+    <div class="profile-card"> <!-- ✅ Card wrapper -->
+
+      <h2>Edit Your Profile</h2>
+
+      <form id="editProfileForm">
+        <div class="profile-pic-section">
+          <img id="profileImage" src="Thumbnails/Ellipse female.png" alt="Profile Picture">
+          <label for="profilePicInput" class="custom-file-label">Choose Profile</label>
+          <input type="file" id="profilePicInput" accept="image/*" style="display: none;">
+        </div>
+
+         <label for="Fullname">Fullname</label>
+        <input type="text" id="Fullname" placeholder="Enter your Fullname" required> 
+        
+        <label for="Fullname">Username</label>
+        <input type="text" id="Fullname" placeholder="Enter your Username" required> 
+
+
+        <label for="email">Email</label>
+        <input type="email" id="email"  placeholder="Enter your Email" required>
+
+        <label for="availableTime">Available Time</label>
+        <input type="text" id="availableTime" placeholder="e.g. Weekdays: 3PM – 6PM" required>
+
+        <label for="skills">Skills You Can Teach (comma separated)</label>
+        <input type="text" id="skills" placeholder="e.g. JavaScript, Algebra, Drawing" required>
+
+        <label for="bio">Bio</label>
+        <textarea id="bio" placeholder="Tell us about yourself..." rows="4"></textarea required>
+
+
+        
+
+        <button type="submit" class="save-button">Save</button>
+      </form>
+
+    </div> <!-- ✅ End Card -->
+  </div>
+
+  <script src="edit-profile.js"></script>
+</body>
+</html>

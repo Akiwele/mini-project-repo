@@ -1,0 +1,191 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f3e8e6;
+}
+
+.explore-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f3e8e6;
+  padding: 20px;
+  gap: 20px;
+}
+
+
+#searchBar {
+  flex-grow:0.4;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 30px;
+  font-size: 16px;
+  outline: none;
+  align-items: center;
+  margin-left: 500px;
+}
+
+.header-icons {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+.profiles-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 20px;
+  padding: 30px;
+}
+
+.profile-card {
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.profile-card img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+.profile-name {
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.skills {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.skill {
+  padding: 5px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  color: white;
+  background-color: #bbb;
+}
+
+.skill[data-color="green"] { background-color: #6abf69; }
+.skill[data-color="blue"] { background-color: #4285f4; }
+.skill[data-color="red"] { background-color: #f55c5c; }
+.skill[data-color="orange"] { background-color: #f7903d; }
+.skill[data-color="black"] { background-color: #333; }
+
+.view-profile-button {
+  background-color: #a259ff;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: none;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+
+/* Modal Background */
+.profile-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(10, 10, 10, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+/* Modal Content Box */
+.modal-content {
+  background: white;
+  width: 90%;
+  max-width: 500px;
+  border-radius: 20px;
+  padding: 30px;
+  position: relative;
+  text-align: center;
+  box-shadow: 0 0 20px rgba(0,0,0,0.1);
+}
+
+/* Profile Picture */
+.modal-content img.profile-pic {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 15px;
+}
+
+/* Profile Name */
+.modal-content h2 {
+  margin-bottom: 10px;
+  color: #333;
+}
+
+/* Bio and Time */
+.modal-content p {
+  margin: 8px 0;
+  color: #555;
+  font-size: 15px;
+}
+
+/* Close Button */
+.close-button {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* Send Request Button */
+.send-request-button {
+  margin-top: 20px;
+  background-color: #a259ff;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.thumb-up , 
+.thumb-down{
+background-color: white;
+color: #a259ff ;
+border-radius: 20px;
+border-color: #a259ff;
+}
+.thumb-up:hover , 
+.thumb-down:hover{
+
+  background-color: #a259ff;
+  color: white;
+}

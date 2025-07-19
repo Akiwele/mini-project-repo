@@ -1,0 +1,381 @@
+*{
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+
+}
+
+.body, html{
+ font-family: sans-serif;
+height: 100%;
+}
+
+.hero-section{
+  background:url(Thumbnails/onlinelearning.png) center center /cover no-repeat;
+  height: 100vh;
+  position: relative;
+  color:white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.over-lay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(5, 5, 5, 0.5);
+  z-index: 1;
+}
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px 60px;
+  
+  
+  transition: background 0.4s ease, box-shadow 0.4s ease;    
+}
+
+.navbar.scrolled {
+ 
+   background: #15141479;
+ 
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: bold;
+  font-size: 20px;
+  margin-left: -30px;
+  margin-top: 30px;
+}
+
+.logo img {
+  height: 35px;
+  width: auto;
+  
+}
+
+.navbuttons a{
+  margin-left: 15px;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 30px;
+  font-size: 16px;
+  font-weight: 500;
+  }
+
+  .navbuttons{
+    margin-top: 20px;
+  }
+
+.button-outline {
+  border: 2px solid white;
+  color: white;
+  background: transparent;
+  transition: background 0.3s;
+}
+.button-outline:hover{
+  background-color: white;
+  color:black;
+
+}
+
+.button-filled{
+
+  background-color: white;
+  color: black;
+ 
+  border:2px solid white;
+}
+.button-filled:hover{
+background: transparent;
+color: white;
+border:2px solid white;
+
+}
+
+.hero-text {
+  
+  position: absolute;
+  top:180px;
+  left:60px;
+  z-index: 2;
+  padding: 0 60px;
+  max-width: 600px;
+  margin-left: -100px;
+  margin-top: 100px; 
+}
+
+
+
+.hero-text h1 {
+  font-size: 48px;
+  margin-bottom: 20px;
+  line-height: 1.2;
+}
+
+.hero-text p {
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+.about-mission {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 60px;
+  background-color: #f9f9f9;
+  
+  gap: 40px;
+  justify-content: space-between;
+}
+
+.left-column,
+.right-column {
+  flex: 1;
+  min-width: 300px;
+}
+
+.left-column h2,
+.right-column h2 {
+  font-size: 28px;
+  margin-bottom: 20px;
+  color: black; 
+}
+
+.left-column p {
+  line-height: 1.7;
+  margin-bottom: 30px;
+}
+
+.left-column img {
+  max-width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.right-column li {
+  margin-bottom: 20px;
+  line-height: 1.6;
+  color: #9d4edd; 
+}
+
+.right-column li * {
+  color: black; 
+}
+
+.mission{
+  background: linear-gradient(135deg, #9d4edd, #c77dff);
+  padding: 12px 20px;
+  display: inline-block;
+  border-radius: 8px;
+  font-size: 24px;
+  color: white !important;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+
+
+}
+.services {
+  padding: 60px 40px;
+  background-color: #f9f8fb;
+}
+
+.services-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 40px;
+  color: #333;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); 
+  gap: 30px;
+  margin-top: 30px;
+}
+
+@media (max-width: 900px) {
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr); 
+  }
+}
+
+@media (max-width: 600px) {
+  .services-grid {
+    grid-template-columns: 1fr; 
+  }
+}
+
+
+.service-card {
+  background-color: #f0ebf8;
+  padding: 24px;
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  transition: transform 0.2s ease;
+}
+
+.service-card h3 {
+  margin-bottom: 12px;
+  font-size: 18px;
+  color: #673DC5;
+}
+
+.service-card p {
+  font-size: 14px;
+  color: #555;
+  line-height: 1.6;
+}
+
+.service-card:hover {
+  transform: translateY(-4px);
+}
+.faqs {
+  background-image: url('Thumbnails/asking.png'); 
+  
+  background-size: cover;
+  background-position: center;
+  padding: 80px 20px;
+  color: white;
+  position: relative;
+}
+
+
+
+.faq-content {
+  position: relative;
+  z-index: 2; 
+}
+
+.faqs h2 {
+  text-align: center;
+  font-size: 36px;
+  margin-bottom: 40px;
+}
+
+.faq-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); 
+  gap: 40px;
+}
+
+.faq-grid h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.faq-grid p {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+
+
+ 
+.footer {
+  background-color:black;
+  padding: 40px 20px 20px;
+  color: #ffffff;
+  font-family: sans-serif;
+}
+
+.footer-container {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 30px;
+}
+
+.footer-socials a img {
+  width: 24px;
+  height: 24px;
+  margin-top: 30px;
+  margin-right: 15px;
+  transition: transform 0.3s;
+}
+
+.footer-socials a:hover img {
+  transform: scale(1.1);
+}
+
+.footer-links {
+  margin-left: 20px;
+  display: flex;
+  gap: 40px;
+  justify-content: center; 
+  margin-left: 130px;
+  text-align: center;
+}
+
+.link-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.link-column a {
+  color: #ffffff;
+  text-decoration: none;
+  margin-bottom: 30px;
+  font-weight: 500;
+}
+
+.link-column a:hover {
+  text-decoration: underline;
+}
+
+.footer-brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  text-align: center;
+}
+
+.footer-brand .logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 35px;
+}
+
+.footer-brand .logo img {
+  width: auto;
+  height: 35px;
+}
+
+.footer-brand .logo span {
+  font-size: 20px;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.footer-brand .quote {
+  margin-top: 5px;
+  font-size: 16px;
+  color: #555;
+}
+
+.footer-bottom {
+  justify-content: center;
+  text-align: center;
+  margin-top: 30px;
+  border-top: 1px solid #ccc;
+  padding-top: 15px;
+  font-size: 14px;
+  color: #777;
+}
+

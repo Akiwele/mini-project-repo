@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TalentLoop - Sign In</title>
+  <link rel="stylesheet" href="signin.css">
+</head>
+<body>
+  <div class="container">
+    <div class="signin-box">
+      <h2>Welcome Back</h2>
+      <p class="subtitle">Login to your account</p>
+
+      <form>
+        
+
+        <label for="identifier">Email or Username</label>
+<input type="text" id="identifier" name="identifier" placeholder="Enter your email or username"required>
+
+       <label for="password">Password</label>
+       <div class="password-wrapper">
+  <input type="password" id="password" placeholder="Enter your password" />
+  <img src="Thumbnails/eye closed.png" id="togglePassword" class="toggle-icon" alt="Toggle Password" />
+</div>
+
+
+        <div class="forgot">
+          <a href="#">Forgot Password?</a>
+        </div>
+
+        <button type="submit" class="login-button" 
+        onclick="window.location.href='skill-selection.html'">
+  Sign In</button>
+
+        
+<div class="divider">
+  <span>or</span>
+</div>
+
+
+
+        <button type="button" class="google-login" onclick="window.location.href='https://www.google.com'">
+          Login with Google
+        </button>
+
+        <p class="signup-link">
+          New user? <a href="signup.html">Signup here</a>
+        </p>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    
+  const togglePassword = document.getElementById("togglePassword");
+  const passwordField = document.getElementById("password");
+
+  togglePassword.addEventListener("click", () => {
+    const isPassword = passwordField.type === "password";
+    passwordField.type = isPassword ? "text" : "password";
+    togglePassword.src = isPassword
+      ? "Thumbnails/eye opened.png"
+      : "Thumbnails/eye closed.png";
+  });
+
+
+  </script>
+</body>
+</html>
