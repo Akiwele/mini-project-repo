@@ -4,9 +4,10 @@
   box-sizing: border-box;
 }
 
-body, html {
+body,
+html {
   height: 100%;
-  font-family: 'Segoe UI', sans-serif;
+  font-family: "Segoe UI", sans-serif;
   background: #fafafa;
 }
 
@@ -100,8 +101,8 @@ textarea {
 
 #uploadButton {
   background-color: transparent;
-  color: #673DC5;
-  border: 2px solid #673DC5;
+  color: #673dc5;
+  border: 2px solid #673dc5;
   border-radius: 5px;
   padding: 8px 16px;
   font-size: 13px;
@@ -140,7 +141,7 @@ textarea {
 }
 
 .next {
-  background: #673DC5;
+  background: #673dc5;
   color: white;
   border: none;
   padding: 12px 24px;
@@ -152,4 +153,8 @@ textarea {
 
 .next:hover {
   background: #562bb2;
+}
+.loading {
+  background-color: #666;
+  color: white;
 }

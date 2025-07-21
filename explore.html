@@ -1,36 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Explore | TalentLoop</title>
-  <link rel="stylesheet" href="explore.css" />
-</head>
-<body>
-  <div class="explore-page">
-    <header class="explore-header">
-      
-      <input type="text" id="searchBar" placeholder="Search for skills, courses or subjects...">
-      <div class="header-icons">
-        <img src="Thumbnails/notification 1.png" alt="Notifications" class="icon" id="notificationBtn" onclick="window.location.href='notification.html'" />
-
-        
-        <img src="Thumbnails/Ellipse female.png" alt="User Profile" class="avatar" id="profileAvatar"
-              onclick="window.location.href='edit-profile.html'" 
-
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Explore | TalentLoop</title>
+    <link rel="stylesheet" href="explore.css" />
+  </head>
+  <body>
+    <div class="explore-page">
+      <header class="explore-header">
+        <input
+          type="text"
+          id="searchBar"
+          placeholder="Search for skills, courses or subjects..."
         />
+        <div class="header-icons">
+          <img
+            src="Thumbnails/notification 1.png"
+            alt="Notifications"
+            class="icon"
+            id="notificationBtn"
+            onclick="window.location.href='notification.html'"
+          />
 
-      </div>
-    </header>
+          <img
+            alt="User Profile"
+            class="avatar"
+            id="profileAvatar"
+            onclick="window.location.href='edit-profile.html'"
+          />
+        </div>
+      </header>
 
-    <div class="profiles-grid" id="profilesGrid"></div>
+      <div class="profiles-grid" id="profilesGrid"></div>
+    </div>
 
-    
-  </div>
-
-
-  
-  <script src="explore.js"></script>
-  
-</body>
+    <script src="explore.js"></script>
+  </body>
 </html>

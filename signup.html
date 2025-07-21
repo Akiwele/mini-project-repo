@@ -1,81 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>TalentLoop - Sign Up</title>
-  <link rel="stylesheet" href="signup.css">
-</head>
-<body>
-  <div class="container">
-    <div class="signup-box">
-      <h2>Welcome </h2>
-      <p class="subtitle">Login to your account</p>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>TalentLoop - Sign Up</title>
+    <link rel="stylesheet" href="signup.css" />
+    <style>
+      .error {
+        color: red;
+        font-size: 0.8em;
+      }
+      .loading {
+        opacity: 0.7;
+        pointer-events: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="signup-box">
+        <h2>Welcome</h2>
+        <p class="subtitle">Sign up for your account</p>
 
-      <form>
-        <label for="username">Fullname</label>
-        <input type="username" id="username" placeholder="Enter your Fullname" required> 
+        <form id="signupForm" novalidate>
+          <label for="fullname">Fullname</label>
+          <input
+            type="username"
+            id="fullname"
+            placeholder="Enter your Fullname"
+            required
+          />
+          <div
+            class="error"
+            id="fullnameError"
+            style="margin-bottom: 5px"
+          ></div>
 
-        <label for="username">Username</label>
-        <input type="username" id="username" placeholder="Enter your Username" required>
+          <label for="username">Username</label>
+          <input
+            type="username"
+            id="username"
+            placeholder="Enter your Username"
+            required
+          />
+          <div
+            class="error"
+            id="usernameError"
+            style="margin-bottom: 5px"
+          ></div>
 
-        <label for="email">Email</label>
-        <input type="email" id="email" placeholder="Enter your email" required>
+          <label for="email">Email</label>
+          <input
+            type="email"
+            id="email"
+            placeholder="Enter your email"
+            required
+          />
+          <div class="error" id="emailError" style="margin-bottom: 5px"></div>
 
-         <label for="password">Password</label>
-<div class="password-wrapper">
-  <input type="password" id="password" placeholder="Enter your password" />
-  <img src="Thumbnails/eye closed.png" id="togglePassword" class="toggle-icon" alt="Toggle Password" />
-</div>
+          <label for="password">Password</label>
+          <div class="password-wrapper">
+            <input
+              type="password"
+              id="password"
+              placeholder="Enter your password"
+              required
+            />
+            <img
+              src="Thumbnails/eye closed.png"
+              id="togglePassword"
+              class="toggle-icon"
+              alt="Toggle Password"
+            />
+          </div>
+          <div
+            class="error"
+            id="passwordError"
+            style="margin-bottom: 5px"
+          ></div>
 
-<label for="confirmPassword">Confirm Password</label>
-<div class="password-wrapper">
-  <input type="password" id="confirmPassword" placeholder="Confirm your password" />
-  <img src="Thumbnails/eye closed.png" id="toggleConfirmPassword" class="toggle-icon" alt="Toggle Confirm Password" />
-</div>
+          <label for="confirmPassword">Confirm Password</label>
+          <div class="password-wrapper">
+            <input
+              type="password"
+              id="confirmPassword"
+              placeholder="Confirm your password"
+              required
+            />
+            <img
+              src="Thumbnails/eye closed.png"
+              id="toggleConfirmPassword"
+              class="toggle-icon"
+              alt="Toggle Confirm Password"
+            />
+          </div>
+          <div
+            class="error"
+            id="confirmPasswordError"
+            style="margin-bottom: 5px"
+          ></div>
 
+          <button type="button" class="signup-button" id="signupButton">
+            Sign Up
+          </button>
 
-        
+          <div class="divider">
+            <span>or</span>
+          </div>
 
-        <button type="button" class="signup-button" onclick="window.location.href='profile-setup.html'">
-  Sign Up
-</button>
+          <button
+            type="button"
+            class="google-signup"
+            onclick="window.location.href='https://www.google.com'"
+          >
+            Signup with Google
+          </button>
 
-
-        <div class="divider">
-  <span>or</span>
-</div>
-         
-        <button type="button" class="google-signup" onclick="window.location.href='https://www.google.com'">
-          Signup with Google
-        </button>
-
-        <p class="signin-link">
+          <p class="signin-link">
             Already have an account? <a href="signin.html">Signin here</a>
-        </p>
-      </form>
+          </p>
+        </form>
+      </div>
     </div>
-  </div>
 
-  <script>
-  const passwordInput = document.getElementById("password");
-const togglePassword = document.getElementById("togglePassword");
-
-togglePassword.addEventListener("click", function () {
-  const isVisible = passwordInput.type === "text";
-  passwordInput.type = isVisible ? "password" : "text";
-  this.src = isVisible ? "Thumbnails/eye closed.png" : "Thumbnails/eye opened.png";
-});
-
-const confirmInput = document.getElementById("confirmPassword");
-const toggleConfirm = document.getElementById("toggleConfirmPassword");
-
-toggleConfirm.addEventListener("click", function () {
-  const isVisible = confirmInput.type === "text";
-  confirmInput.type = isVisible ? "password" : "text";
-  this.src = isVisible ? "Thumbnails/eye closed.png" : "Thumbnails/eye opened.png";
-});
-
-</script>
-</body>
+    <script src="signup.js"></script>
+  </body>
 </html>

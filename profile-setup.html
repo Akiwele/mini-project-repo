@@ -1,56 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Edit Profile - TalentLoop</title>
-  <link rel="stylesheet" href="profile.css" />
-</head>
-<body>
-  <div class="profile-wrapper">
-    <div class="profile-card">
-      <h2>Edit Profile</h2>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edit Profile - TalentLoop</title>
+    <link rel="stylesheet" href="profile.css" />
+  </head>
+  <body>
+    <div class="profile-wrapper">
+      <div class="profile-card">
+        <h2>Edit Profile</h2>
 
-      <div class="photo-upload">
-        <div class="photo-box">
-          <img src="Thumbnails/Ellipse female.png" alt="profile picture" id="profileImage">
+        <div class="photo-upload">
+          <div class="photo-box">
+            <img
+              src="Thumbnails/Ellipse female.png"
+              alt="profile picture"
+              id="profileImage"
+            />
+          </div>
+          <div class="photo-text">
+            <p><strong>Upload Your Photo</strong></p>
+            <p class="note">Your image should be in PNG or JPG format</p>
+
+            <!-- Hidden file input -->
+            <input
+              type="file"
+              id="upload"
+              accept="image/*"
+              capture="environment"
+              style="display: none"
+            />
+
+            <!-- Button that triggers file picker -->
+            <button type="button" id="uploadButton">Upload Photo</button>
+
+            <!-- Display file name -->
+            <span id="fileName"></span>
+          </div>
         </div>
-        <div class="photo-text">
-          <p><strong>Upload Your Photo</strong></p>
-          <p class="note">Your image should be in PNG or JPG format</p>
 
-          <!-- Hidden file input -->
-          <input type="file" id="upload" accept="image/*" capture="environment" style="display: none;" />
+        <form class="profile-form">
+          <label for="fullName">Full Name</label>
+          <input type="text" id="fullName" placeholder="Full name" readonly />
 
-          <!-- Button that triggers file picker -->
-          <button type="button" id="uploadButton">Upload Photo</button>
+          <label for="email">Email</label>
+          <input type="email" id="email" placeholder="Email" readonly />
 
-          <!-- Display file name -->
-          <span id="fileName"></span>
-        </div>
+          <label for="availability">Availability</label>
+          <input
+            type="text"
+            id="availability"
+            placeholder="eg. WeekDays 8am - 5pm"
+            required
+          />
+
+          <label for="bio">Bio</label>
+          <textarea
+            id="bio"
+            placeholder="Tell us about yourself..."
+            rows="4"
+          ></textarea>
+
+          <div class="buttons">
+            <button
+              type="button"
+              class="cancel"
+              onclick="window.location.href='signup.html'"
+            >
+              Cancel
+            </button>
+            <button type="button" class="next">Next</button>
+          </div>
+        </form>
       </div>
-
-      <form class="profile-form">
-        <label for="fullName">Full Name</label>
-        <input type="text" id="fullName" placeholder="Full name" required />
-
-        <label for="email">Email</label>
-        <input type="email" id="email" placeholder="Email" required />
-
-        <label for="availability">Availability</label>
-        <input type="text" id="availability" placeholder="Time/Day Available" required />
-
-        <label for="bio">Bio</label>
-        <textarea id="bio" placeholder="Tell us about yourself..." rows="4"></textarea>
-
-        <div class="buttons">
-          <button type="button" class="cancel" onclick="window.location.href='signup.html'">Cancel</button>
-          <button type="submit" class="next" onclick="window.location.href='skill-selection.html'">Next</button>
-        </div>
-      </form>
     </div>
-  </div>
 
-  <script src="profile-setup.js"></script>
-</body>
+    <script src="profile-setup.js"></script>
+  </body>
 </html>
