@@ -29,24 +29,37 @@ function renderNotifications(filter = "all") {
   const container = document.getElementById("notificationList");
   container.innerHTML = "";
 
-  const filtered =
-    filter === "all"
-      ? notifications
-      : notifications.filter((req) => {
-          if (filter === "unread" || filter === "request")
-            return req.status === "PENDING";
-          if (filter === "approval") return req.status === "APPROVED";
-          return true;
-        });
+  const filtered = notifications.filter((req) => {
+    if (req.status === "PENDING") {
+      return req.receiverId.id === currentUserId;
+    }
+
+    if (req.status === "APPROVED") {
+      return req.sender.id === currentUserId;
+    }
+
+    return false;
+  });
 
   filtered.forEach((req) => {
     const card = document.createElement("div");
     card.className = "notification-card";
 
-    card.innerHTML = `
-      <p>  ${req.message || "No message"}</p>
-      
-    `;
+    let message = "";
+
+    if (req.status === "PENDING") {
+      message = `From - ${req.sender.realUsername}: ${
+        req.message || "No message"
+      }`;
+    } else if (req.status === "APPROVED") {
+      message = `From - ${req.sender.realUsername}: ${
+        req.message || "No message"
+      } | Receiver: ${req.receiverId.email}`;
+    } else {
+      message = `${req.message || "No message"}`;
+    }
+
+    card.innerHTML = `<p>${message}</p>`;
 
     if (req.status === "PENDING" && req.receiverId.id === currentUserId) {
       const actions = document.createElement("div");
@@ -71,6 +84,10 @@ function renderNotifications(filter = "all") {
 
     container.appendChild(card);
   });
+
+  if (filtered.length === 0) {
+    container.innerHTML = "<p>No notifications to show.</p>";
+  }
 }
 
 async function handleApprove(requestId, receiverId, acceptBtn, declineBtn) {
