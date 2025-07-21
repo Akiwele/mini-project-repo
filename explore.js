@@ -24,19 +24,16 @@ async function fetchProfiles() {
     }
 
     const data = await response.json();
-    allProfiles = data?.data || [];
+    allProfiles = (data?.data || []).filter(
+      (p) => p.id !== localUserData?.data?.userId
+    );
 
     renderProfiles(allProfiles);
 
-    if (allProfiles.length > 0) {
-      const currentUser = allProfiles.find(
-        (p) => p.id === localUserData?.data?.userId
-      );
-      if (currentUser && currentUser.profileImageUrl) {
-        profileAvatar.src = currentUser.profileImageUrl;
-      } else {
-        profileAvatar.src = "Thumbnails/Ellipse female.png";
-      }
+    if (localUserData?.data?.profileUrl) {
+      profileAvatar.src = localUserData.data.profileUrl;
+    } else {
+      profileAvatar.src = "Thumbnails/Ellipse female.png";
     }
   } catch (error) {
     console.error("Error fetching profiles:", error);
@@ -131,12 +128,33 @@ function showModal(profile) {
   document.body.appendChild(modal);
 
   const sendRequestButton = modal.querySelector(".send-request-button");
-  sendRequestButton.addEventListener("click", function () {
-    alert("Connection request sent!");
-    sendRequestButton.textContent = "Request Sent";
-    sendRequestButton.disabled = true;
-    sendRequestButton.style.backgroundColor = "#aaa";
-    sendRequestButton.style.cursor = "default";
+  sendRequestButton.addEventListener("click", async function () {
+    try {
+      const response = await fetch(
+        `https://talentloop-backend.onrender.com/requests/send?userId=${localUserData?.data?.userId}&receiverId=${profile.id}`,
+        {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to send request.");
+      }
+
+      const result = await response.json();
+      console.log("Request sent:", result);
+
+      sendRequestButton.textContent = "Request Sent ✔️";
+    } catch (err) {
+      console.error(err);
+      sendRequestButton.textContent = "Failed, Try Again";
+      sendRequestButton.disabled = false;
+      sendRequestButton.style.backgroundColor = "#007bff";
+      sendRequestButton.style.cursor = "pointer";
+    }
   });
 
   modal

@@ -1,42 +1,68 @@
-let notifications = [
-  { id: 1, type: 'unread', message: 'George Grey sent you a connection request.', category: 'request', requester: 'George Grey' },
-  { id: 2, type: 'read', message: 'Lordina Roberts approved your request.', category: 'approval' },
-  { id: 3, type: 'unread', message: 'New match: Algebra & Economics', category: 'unread' }
-];
+const localUserData = JSON.parse(localStorage.getItem("userData")) || {};
+const token = localUserData?.data?.token || "";
+const currentUserId = localUserData?.data?.userId || "";
 
-function renderNotifications(filter = 'all') {
-  const container = document.getElementById('notificationList');
-  container.innerHTML = '';
+let notifications = [];
 
-  const filtered = filter === 'all'
-    ? notifications
-    : notifications.filter(n => n.category === filter);
+async function fetchNotifications() {
+  try {
+    const res = await fetch(
+      `https://talentloop-backend.onrender.com/requests/?userId=${currentUserId}`,
+      {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
 
-  filtered.forEach(notif => {
-    const card = document.createElement('div');
-    card.className = 'notification-card';
+    if (!res.ok) throw new Error("Failed to load requests");
+    const data = await res.json();
+    notifications = data?.data || [];
+    renderNotifications("all");
+  } catch (err) {
+    console.error("Error:", err);
+  }
+}
 
-    // Faded if read
-    if (notif.type === 'read') {
-      card.style.opacity = '0.6';
-      card.style.backgroundColor = '#eaeaea';
-    }
+function renderNotifications(filter = "all") {
+  const container = document.getElementById("notificationList");
+  container.innerHTML = "";
 
-    card.innerHTML = `<p>${notif.message}</p>`;
+  const filtered =
+    filter === "all"
+      ? notifications
+      : notifications.filter((req) => {
+          if (filter === "unread" || filter === "request")
+            return req.status === "PENDING";
+          if (filter === "approval") return req.status === "APPROVED";
+          return true;
+        });
 
-    if (notif.category === 'request') {
-      const actions = document.createElement('div');
-      actions.className = 'actions';
+  filtered.forEach((req) => {
+    const card = document.createElement("div");
+    card.className = "notification-card";
 
-      const acceptBtn = document.createElement('button');
-      acceptBtn.className = 'accept-btn';
-      acceptBtn.textContent = 'Accept';
-      acceptBtn.onclick = () => markAsRead(notif.id, 'accepted');
+    card.innerHTML = `
+      <p>  ${req.message || "No message"}</p>
+      
+    `;
 
-      const declineBtn = document.createElement('button');
-      declineBtn.className = 'decline-btn';
-      declineBtn.textContent = 'Decline';
-      declineBtn.onclick = () => markAsRead(notif.id, 'declined');
+    if (req.status === "PENDING" && req.receiverId.id === currentUserId) {
+      const actions = document.createElement("div");
+      actions.className = "actions";
+
+      const acceptBtn = document.createElement("button");
+      acceptBtn.className = "accept-btn";
+      acceptBtn.textContent = "Accept";
+      acceptBtn.onclick = () =>
+        handleApprove(req.id, req.receiverId.id, acceptBtn, declineBtn);
+
+      const declineBtn = document.createElement("button");
+      declineBtn.className = "decline-btn";
+      declineBtn.textContent = "Decline";
+      declineBtn.onclick = () =>
+        handleDecline(req.id, req.receiverId.id, acceptBtn, declineBtn);
 
       actions.appendChild(acceptBtn);
       actions.appendChild(declineBtn);
@@ -47,58 +73,64 @@ function renderNotifications(filter = 'all') {
   });
 }
 
-function markAsRead(id, action) {
-  const notif = notifications.find(n => n.id === id);
-  if (notif) {
-    notif.type = 'read';
+async function handleApprove(requestId, receiverId, acceptBtn, declineBtn) {
+  acceptBtn.disabled = true;
+  declineBtn.disabled = true;
 
-    if (action === 'accepted') {
-      notif.message += ' (You accepted the request)';
+  try {
+    const res = await fetch(
+      `https://talentloop-backend.onrender.com/requests/approve?requestId=${requestId}&receiverId=${receiverId}`,
+      {
+        method: "PATCH",
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    );
 
-      // Simulated current user
-      const currentUser = JSON.parse(localStorage.getItem('userProfile')) || {
-        name: 'You',
-        email: 'your.email@example.com'
-      };
-
-      // Add approval notification to the other user (simulated)
-      notifications.push({
-        id: notifications.length + 1,
-        type: 'unread',
-        message: `${currentUser.name} approved your request. Contact them at: ${currentUser.email}`,
-        category: 'approval'
-      });
-
-    } else if (action === 'declined') {
-      notif.message += ' (You declined the request)';
-    }
-
-    renderNotifications(document.querySelector('.tab-btn.active').dataset.tab);
+    if (!res.ok) throw new Error("Approval failed");
+    alert("Request approved!");
+    fetchNotifications();
+  } catch (err) {
+    console.error(err);
+    acceptBtn.disabled = false;
+    declineBtn.disabled = false;
   }
 }
 
-// Tab button logic
-document.querySelectorAll('.tab-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
+async function handleDecline(senderId, receiverId, acceptBtn, declineBtn) {
+  acceptBtn.disabled = true;
+  declineBtn.disabled = true;
+
+  try {
+    const res = await fetch(
+      `https://talentloop-backend.onrender.com/requests/decline?senderId=${senderId}&receiverId=${receiverId}`,
+      {
+        method: "PATCH",
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    );
+
+    if (!res.ok) throw new Error("Decline failed");
+    alert("Request declined.");
+    fetchNotifications();
+  } catch (err) {
+    console.error(err);
+    acceptBtn.disabled = false;
+    declineBtn.disabled = false;
+  }
+}
+
+document.querySelectorAll(".tab-btn").forEach((btn) => {
+  btn.addEventListener("click", () => {
+    document
+      .querySelectorAll(".tab-btn")
+      .forEach((b) => b.classList.remove("active"));
+    btn.classList.add("active");
     renderNotifications(btn.dataset.tab);
   });
 });
 
-// Go back button
 function goBack() {
-  window.location.href = 'explore.html';
+  window.location.href = "explore.html";
 }
 
-// Load saved theme
-document.addEventListener('DOMContentLoaded', () => {
-  const savedTheme = localStorage.getItem('theme');
-  if (savedTheme === 'dark') {
-    document.body.classList.add('dark-mode');
-    const toggle = document.getElementById('themeToggle');
-    if (toggle) toggle.checked = true;
-  }
-
-  renderNotifications(); // Render after DOM is ready
-});
+document.addEventListener("DOMContentLoaded", fetchNotifications);
