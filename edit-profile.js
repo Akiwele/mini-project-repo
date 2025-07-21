@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   try {
     const response = await fetch(
-      `http://localhost:8070/users/user?userId=${userId}`,
+      `https://talentloop-backend.onrender.com/users/user?userId=${userId}`,
       {
         method: "GET",
         headers: {
@@ -111,7 +111,7 @@ editProfileForm.addEventListener("submit", async (e) => {
     const token = userData?.data?.token;
 
     const response = await fetch(
-      `http://localhost:8070/users/update-profile?userId=${userId}`,
+      `https://talentloop-backend.onrender.com/users/update-profile?userId=${userId}`,
       {
         method: "PUT",
         headers: {

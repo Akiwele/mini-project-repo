@@ -64,18 +64,21 @@ async function handleSignup() {
   signupButton.classList.add("loading");
 
   try {
-    const response = await fetch("http://localhost:8070/auth/signup", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        fullName,
-        username,
-        email,
-        password,
-      }),
-    });
+    const response = await fetch(
+      "https://talentloop-backend.onrender.com/auth/signup",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          fullName,
+          username,
+          email,
+          password,
+        }),
+      }
+    );
 
     if (!response.ok) {
       const errorData = await response.json();

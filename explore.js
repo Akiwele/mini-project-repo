@@ -9,12 +9,15 @@ let allProfiles = [];
 
 async function fetchProfiles() {
   try {
-    const response = await fetch("http://localhost:8070/users/", {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const response = await fetch(
+      "https://talentloop-backend.onrender.com/users/",
+      {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
 
     if (!response.ok) {
       throw new Error("Failed to fetch users");

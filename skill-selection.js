@@ -111,7 +111,7 @@ async function saveSkills() {
 
   try {
     const response = await fetch(
-      `http://localhost:8070/auth/create-profile?userId=${userId}`,
+      `https://talentloop-backend.onrender.com/auth/create-profile?userId=${userId}`,
       {
         method: "PATCH",
         headers: {
